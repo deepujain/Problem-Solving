@@ -1,0 +1,62 @@
+The Collective Interview Hadoop 
+Version 0.0.0_1 (2012/09/16)
+  * This version's docs: http://twiki.corp.collective.com/interview/hadoop/HadoopQuotes.html
+  * This version includes :
+    1. A Runner that instantiates and runs three M/R jobs to solve each of the three problems.
+    2. Build Procedure:
+       2a. sudo mvn clean install assembly:single. This creates hadoop_quotes-0.0.0_1.jar and places
+       all dependencies into target/hadoop_quotes-0.0.0_1-bundle-dependencies which now contains
+       commons-lang-2.2.jar.
+    3. DFS Copy
+       Copy input file quotes.txt into DFS @ input.
+          Copy all dependencies in target/hadoop_quotes-0.0.0_1-bundle-dependencies into DFS @ dependencies.
+    3. For Pseduo-Cluster/Full Cluster mode copy input file copied to DFS @ /user/test/input director 
+       and all dependencies to /user/test/dependencies in DFS. For now this contains  which is copied to 
+       DFS so that its available to individual M/R tasks. Output of each run is placed in DFS. 
+			The output is present @ output/YEAR/MONTH/DAY/HMS/output-QuoteCountDriver - 1st Problem	
+    		The output is present @ output/YEAR/MONTH/DAY/HMS/output-DistinctFrequencyDriver - 2nd Problem
+    		The output is present @ output/YEAR/MONTH/DAY/HMS/output-AuthorDistinctFrequencyDriver - 3rd Problem    
+    4. Hadoop Version 
+	   Cluster Version : Hadoop 0.20.2
+	   Code Compiled against: 0.20.1.3092118008
+    5. How to Run ?
+    	export HADOOP_CLASSPATH=target/hadoop_quotes-0.0.0_1.jar:target/hadoop_quotes-0.0.0_1-bundle-dependencies/commons-lang-2.2.jar
+    	5a. Local Mode:
+    		Point fs.default.name to file:/// and mapred.job.tracker to local
+    		hadoop com.problem.mapreduce.quotes.runner.QuoteRunner target/hadoop_quotes-0.0.0_1-bundle-dependencies/ quotes.txt output
+    	5b. Pseudo-Distributed Mode: 
+    		Point fs.default.name to hdfs://localhost/ and mapred.job.tracker to localhost:8021
+    		hadoop com.problem.mapreduce.quotes.runner.QuoteRunner dependencies input/quotes.txt output
+    	5c. Fully-Distributed Mode: 
+    		Point fs.default.name to NN and mapred.job.tracker to JT
+    		hadoop com.problem.mapreduce.quotes.runner.QuoteRunner dependencies input/quotes.txt output
+    6. Assumptions
+    	Text Processing: An word extractor is implemented that first cleanses input line (removes punctuation like common, fullstop)
+    				     and matches the cleansed line against a pattern (alphanumeric word, words with apostrophes and with hyphens)
+    				     are considered valid and then runs each extracted word against a length comparator (filters words of length < 4).
+    				     Words like ain't isn't are considered a sinlge whole words. Words like full-distributed are considered whole
+    				     single words. 
+	
+	7. Unit Test cases are written using TestNG & JUnit. Coverage is analyzed using cobertura.(sudo mvn cobertura:clean cobertura:cobertura)
+		Unit Test cases for classes under authorquotes & distinct are not written and they can be written using an approach followed for rest
+		of components. Apart from these the coverage is almost 100%.		
+	8. Did I consider what you were looking for ?
+		8a. Is your code written in a way that you, or anyone else, would actually want to maintain it? --- Each class does only one task and its
+			are methods are in form of APIs and hence easily testable.  
+		8b. Can we build and run it easily after you submit it?
+			Two Steps
+			1) sudo mvn clean install assembly:single
+			2) Copy input & dependencies into DFS as explained above. 
+			3) Export HADOOP_CLASSPATH to contain dependencies and hadoop_quotes.*.jar
+			4) Run using hadoop command: hadoop com.problem.mapreduce.quotes.runner.QuoteRunner dependencies input/quotes.txt output
+		8c. Have you demonstrated an understanding of how hadoop in general, and map/reduce jobs specifically actually work?
+			M/R jobs solve each problem.
+			Combiner is used to reduce data traffice between map tasks and reducer tasks.
+			Proper input format is used so that map() receive input as Author Vs Quotes.
+		8d. Is it testable?
+			8a + TestNG test cases written for most of the code demonstrates that code is easily testable.Cobertura reports indicates
+			the code for which test cases were written is 95%+ covered. 
+		8e. Bonus Points ?
+			#1 - Used simple M/R jobs to complete the task. So not much creative.
+			#2. This "README" file & lots of Javadoc is written.
+			#3. Project is built using Maven & Major.Minor.Release_Build versioning (0.0.0_1 as of now) format is used for this project. 	 				

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.problem.solving</groupId>
+	<artifactId>problem_solving</artifactId>
+	<version>0.0.0_1</version>
+	<packaging>jar</packaging>
+	<name>Problem Solving</name>
+	<description>Algorithms/Problem solving</description>
+	<url>http://problem.com/problem/solving</url>
+	<properties>
+		<commonLangVersion>2.2</commonLangVersion>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>${commonLangVersion}</version>
+		</dependency>
+	</dependencies>
+	<repositories>
+		<repository>
+			<id>repo.testng</id>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+			<id>mavenrepo</id>
+			<url>https://repository.cloudera.com/content/groups/public</url>
+		</repository>
+	</repositories>
+	<!-- Build Plugins -->
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- Compiler Plugin -->
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
+

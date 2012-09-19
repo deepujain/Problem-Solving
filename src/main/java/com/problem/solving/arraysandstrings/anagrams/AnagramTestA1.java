@@ -15,6 +15,7 @@ public class AnagramTestA1 {
         System.out.println(testAnagram("abcd".toCharArray(), "abcd".toCharArray()));
         System.out.println(testAnagram("abcd".toCharArray(), "abcde".toCharArray()));
         System.out.println(testAnagram("abcd".toCharArray(), "badc".toCharArray()));
+        System.out.println(testAnagram("abcd".toCharArray(), "bade".toCharArray()));
     }
 
     static boolean testAnagram(char[] s1, char[] s2) {

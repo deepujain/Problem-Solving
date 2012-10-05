@@ -22,12 +22,12 @@ import java.util.PriorityQueue;
  * @param <Value>
  */
 public class LRUCache<Key, Value> {
-    private int maxCapacity;
+    private final int maxCapacity;
     private int currentCapacity;
     private Map<Key, Value> lRUCache = null;
-    private PriorityQueue<Key> lRUList = new PriorityQueue<Key>();
+    private final PriorityQueue<Key> lRUList = new PriorityQueue<Key>();
 
-    public LRUCache(int maxCapacity) {
+    public LRUCache(final int maxCapacity) {
         this.maxCapacity = maxCapacity;
         lRUCache = new HashMap<Key, Value>(this.maxCapacity);
     }
@@ -39,7 +39,7 @@ public class LRUCache<Key, Value> {
      * @param key
      * @return
      */
-    public Value get(Key key) {
+    public Value get(final Key key) {
         Value value = null;
         if (lRUCache.containsKey(key)) {
             value = lRUCache.get(key);
@@ -57,9 +57,9 @@ public class LRUCache<Key, Value> {
      * @param key
      * @param value
      */
-    public void put(Key key, Value value) {
+    public void put(final Key key, final Value value) {
         if (currentCapacity >= maxCapacity) {
-            Key oldestKey = lRUList.poll();
+            final Key oldestKey = lRUList.poll();
             lRUCache.remove(oldestKey);
         }
         lRUCache.put(key, value);

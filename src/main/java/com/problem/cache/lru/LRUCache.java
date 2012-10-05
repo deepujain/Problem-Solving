@@ -12,7 +12,11 @@ import java.util.PriorityQueue;
  * the key must be marked fresh and hence is removed from queue and moved to the
  * tail of queue. In case of cache miss, new element is moved to the head of
  * 
- * This implementation is not thread safe.
+ * This implementation is not thread safe. <br/>
+ * Pending <br/>
+ * 1. Thread Safe Implementation <br/>
+ * 2. Use of weak references for values as there is no limitation on its size.
+ * Use WeakHashMap<br/>
  * 
  * @param <Key>
  * @param <Value>

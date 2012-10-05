@@ -1,8 +1,8 @@
 package com.problem.cache.lru;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 /**
  * Non-Thread safe LRUCache. A LRUCache is a bounded cache. When cache exceeds
@@ -21,12 +21,13 @@ import java.util.Map;
  * @param <Key>
  * @param <Value>
  */
-public class LRUCache<Key, Value> {
+public class SafeLRUCache<Key, Value> {
     private final int maxCapacity;
+    private int currentCapacity;
     private Map<Key, Value> lRUCache = null;
-    private final LinkedList<Key> lRUList = new LinkedList<Key>();
+    private final PriorityQueue<Key> lRUList = new PriorityQueue<Key>();
 
-    public LRUCache(final int maxCapacity) {
+    public SafeLRUCache(final int maxCapacity) {
         this.maxCapacity = maxCapacity;
         lRUCache = new HashMap<Key, Value>(this.maxCapacity);
     }
@@ -44,7 +45,6 @@ public class LRUCache<Key, Value> {
             value = lRUCache.get(key);
             if (lRUList.remove(key)) {
                 lRUList.offer(key);
-                System.out.println(lRUList.peek());
             }
         }
         return value;
@@ -58,7 +58,7 @@ public class LRUCache<Key, Value> {
      * @param value
      */
     public void put(final Key key, final Value value) {
-        if (lRUCache.size() >= maxCapacity) {
+        if (currentCapacity >= maxCapacity) {
             final Key oldestKey = lRUList.poll();
             lRUCache.remove(oldestKey);
         }
@@ -66,28 +66,4 @@ public class LRUCache<Key, Value> {
         lRUList.offer(key);
     }
 
-    public static void main(final String[] args) {
-        final LRUCache<Integer, String> lruCache = new LRUCache<Integer, String>(5);
-        lruCache.put(1, "ONE");
-        lruCache.get(1);
-        lruCache.put(2, "TWO");
-        lruCache.get(1);
-        lruCache.put(3, "THREE");
-        lruCache.get(1);
-        lruCache.put(4, "FOUR");
-        lruCache.get(1);
-        lruCache.put(5, "FIVE");
-        lruCache.get(1);
-
-        lruCache.put(6, "SIX");
-        lruCache.get(1);
-        lruCache.put(7, "SEVEN");
-        lruCache.get(1);
-        lruCache.put(8, "EIGHT");
-        lruCache.get(1);
-        lruCache.put(9, "NINE");
-        lruCache.get(1);
-        lruCache.put(10, "TEN");
-        lruCache.get(1);
-    }
 }

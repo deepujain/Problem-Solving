@@ -1,6 +1,5 @@
-package com.interview.fb;
+package com.interview.lc.fb.easy;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -8,7 +7,15 @@ class TreeNode {
   public TreeNode left;
   public TreeNode right;
   public int val;
+
+  public TreeNode(int val) {
+    this.val = val;
+  }
 }
+
+/**
+ * https://leetcode.com/problems/range-sum-of-bst/
+ */
 public class RangeSumBST {
   public static void main(String[] a) {
 

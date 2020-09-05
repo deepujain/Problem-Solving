@@ -1,5 +1,8 @@
-package com.interview.fb;
+package com.interview.lc.fb.easy;
 
+/**
+ * https://leetcode.com/problems/monotonic-array/submissions/
+ */
 public class MonotonicArray {
   public static void main(String[] args) {
     MonotonicArray m = new MonotonicArray();

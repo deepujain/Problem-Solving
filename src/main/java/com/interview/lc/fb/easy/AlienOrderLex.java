@@ -1,5 +1,8 @@
-package com.interview.fb;
+package com.interview.lc.fb.easy;
 
+/**
+ * https://leetcode.com/problems/verifying-an-alien-dictionary/submissions/
+ */
 public class AlienOrderLex {
 
   public static void main(String[] a) {

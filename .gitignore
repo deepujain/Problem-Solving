@@ -1,0 +1,43 @@
+*.class
+*.iml
+*.swp
+*.jar
+*.log
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+.classpath
+.idea
+.metadata
+.settings
+.project
+.version.properties
+target
+tmp
+.DS_Store
+.cache-main
+scalastyle-output.xml
+.checkstyle
+.pydevproject
+dependency-reduced-pom.xml
+.cache-tests
+*.egg-info
+__pycache__
+
+# log direcotry
+log
+
+# distribution directory
+distribution
+
+# docker-files
+docker-files/**/build/buildc

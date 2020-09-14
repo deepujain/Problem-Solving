@@ -39,6 +39,7 @@ public class AlienOrderLex {
     while(i < word1.length() && j < word2.length() && compare == 0) {
       char c1 = word1.charAt(i);
       char c2 = word2.charAt(j);
+      //c1-'a' the subtration is done to start from the top of the array at 0 index
       compare = english_to_alien_map[c1-'a'] - english_to_alien_map[c2-'a'];
       i++;
       j++;

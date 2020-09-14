@@ -53,8 +53,8 @@ public class NestedWeightedSum {
       if (ni.isInteger()) {
         sum += ni.getInteger() * depth;
       } else {
-        //DFS uses stack and recursive calls use method stack
-        //BFS uses queue
+        //DFS uses stack. Recursive function calls use stack.
+        //BFS uses queue.
         sum += depthS(ni.getList(), depth + 1);
       }
     }

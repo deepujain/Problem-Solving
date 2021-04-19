@@ -16,12 +16,15 @@ public class KClosestPoints {
   }
 
   public int[][] kClosest(int[][] points, int k) {
+    //Closest point => Min Heap, so that removing minimum element would be would be O(logN)
     PriorityQueue<int []> minHeap = new PriorityQueue<int[]>(points.length,new PointCompator());
 
+    //Add all points into min heap
     for (int i = 0; i < points.length; i++) {
       minHeap.add(points[i]);
     }
 
+    //Remove k points. k*O(logN)
     int[][] kpoints = new int[k][];
     int i = 0;
     while(i<k && !minHeap.isEmpty()) {

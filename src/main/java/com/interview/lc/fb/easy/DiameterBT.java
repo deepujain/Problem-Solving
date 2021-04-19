@@ -46,13 +46,19 @@ public class DiameterBT {
     return Math.max(diameterPassesThroughRoot, diameterDoesNotPassThroughRoot);
   }
 
-  public int height(TreeNode node) {
-    if (node == null) {
+  /**
+   * Height of tree is equal to max depth + 1;
+   * @param root
+   * @return
+   */
+  public int height(TreeNode root) {
+    if(root == null) {
       return 0;
     }
 
-    int leftH = height(node.left);
-    int rightH = height(node.right);
-    return 1 + Math.max(leftH, rightH);
+    int leftH = height(root.left);
+    int rightH = height(root.right);
+    int height = 1 + Math.max(leftH,rightH);
+    return height;
   }
 }

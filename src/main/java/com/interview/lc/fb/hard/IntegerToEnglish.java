@@ -127,7 +127,7 @@ public class IntegerToEnglish {
   }
 
   /**
-   * The number has two digits and could be between 10 to 99
+   * The number has two digits and could be between 1 to 99
    *
    * @param num
    * @return

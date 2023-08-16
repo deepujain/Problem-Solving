@@ -1,9 +1,5 @@
-package com.interview.leetcode.easy.dynamic;
+package com.problem.dynamic;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
 /*
 public class MinimumKnightMoves {
 

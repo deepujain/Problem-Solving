@@ -1,6 +1,6 @@
 
 
-package com.interview.leetcode.easy.dynamic;
+package com.problem.dynamic;
 
 import java.util.HashMap;
 import java.util.Map;
